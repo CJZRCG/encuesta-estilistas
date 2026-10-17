@@ -2,487 +2,620 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tú pones el talento</title>
 <meta name="robots" content="noindex">
-<title>¿Cuánto te cuesta una cita que no llega?</title>
-<meta name="description" content="Encuesta para estilistas: responde en menos de 5 minutos y al final te mostramos tu cifra.">
+<meta name="description" content="Estamos creando la herramienta de los estilistas independientes. Responde en 5 minutos y decide qué se construye primero.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cjzrcg.github.io/encuesta-estilistas/">
-<meta property="og:title" content="¿Cuánto te cuesta una cita que no llega?">
-<meta property="og:description" content="Casi ningún estilista lo ha calculado. Responde en menos de 5 minutos y al final te mostramos tu cifra.">
+<meta property="og:title" content="Tú pones el talento. Tu asistente llena la agenda.">
+<meta property="og:description" content="Estamos creando la herramienta de los estilistas independientes. Responde en 5 minutos y decide qué se construye primero.">
 <meta property="og:image" content="https://cjzrcg.github.io/encuesta-estilistas/vista-previa.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-[hidden]{display:none !important}
-/* Layout: una columna estrecha tipo app móvil; portada y luego una pregunta por pantalla, con barra de secciones tipo carta de colores */
+[hidden]{display:none!important}
+/* Layout: asistente móvil de una pregunta por pantalla, fondo crema, barra de avance arriba y botones fijos abajo (al alcance del pulgar) */
 :root{
-  --bg:#F6F5F8; --surface:#FFFFFF; --ink:#1E1726; --muted:#6B6475; --line:#E2DEE8;
-  --accent:#8E2C6E; --accent-ink:#FFFFFF; --accent-soft:#F4E7F0;
-  --sw1:#3B2416; --sw2:#6A3E22; --sw3:#9C6A3F; --sw4:#C99A63; --sw5:#8E2C6E; --sw6:#B5465A;
-  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --radius:14px;
+  --bg:#FBF4DF; --surface:#FFFDF6; --ink:#2A2118; --muted:#6B5F4E; --line:#E9DDBF; --ex:#F5EBCF;
+  --accent:#1F4A7A; --accent-ink:#FFFFFF; --accent-soft:#E2E9F2; --accent-deep:#14365C;
+  --ok:#1E7A4C; --ok-soft:#E6F2DF; --no:#B42A20; --no-soft:#F9E3DA; --off:#B8AC94;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+  --r:16px;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#141018; --surface:#1E1824; --ink:#F1EDF4; --muted:#A69FAF; --line:#342C3C;
-  --accent:#E384BE; --accent-ink:#1A0F17; --accent-soft:#3A2232; color-scheme:dark } }
-:root[data-theme="dark"]{
-  --bg:#141018; --surface:#1E1824; --ink:#F1EDF4; --muted:#A69FAF; --line:#342C3C;
-  --accent:#E384BE; --accent-ink:#1A0F17; --accent-soft:#3A2232; color-scheme:dark }
-
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
-.wrap{max-width:560px;margin:0 auto;padding-inline:18px;padding-block:24px 48px;display:flex;flex-direction:column;gap:22px}
-h1,h2{font-family:var(--display);font-weight:700;letter-spacing:-0.015em;text-wrap:balance;margin:0}
-h1{font-size:clamp(1.9rem,6.4vw,2.6rem);line-height:1.08}
-h2{font-size:clamp(1.2rem,4.4vw,1.5rem);line-height:1.25}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-0.015em;text-wrap:balance;margin:0;line-height:1.12}
+h1{font-size:clamp(2rem,8vw,2.6rem)}
+h2{font-size:clamp(1.35rem,5.4vw,1.7rem)}
+h3{font-size:1.2rem}
 p{margin:0}
-.screen{display:flex;flex-direction:column;gap:20px}
-.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.brand b{font-family:var(--display);font-size:1.05rem;letter-spacing:-0.01em}
-.tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:4px 9px;border-radius:999px}
-.hook{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 18px 14px 12px;color:var(--muted)}
-.hook svg{width:132px;flex:none;height:auto}
-.hook .hot{color:var(--accent)}
-.hook-k{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
-.hook-t{display:block;color:var(--ink);font-weight:600;line-height:1.35}
-@media (max-width:360px){.hook svg{width:96px}}
-.sw{aspect-ratio:3/4;max-width:100%;border-radius:10px;display:flex;align-items:flex-end;padding:6px;font-family:var(--mono);font-size:.66rem;color:#fff}
-.sw:nth-child(1){background:var(--sw1)}.sw:nth-child(2){background:var(--sw2)}.sw:nth-child(3){background:var(--sw3)}
-.sw:nth-child(4){background:var(--sw4);color:#2a1a10}.sw:nth-child(5){background:var(--sw5)}.sw:nth-child(6){background:var(--sw6)}
-.lead{font-size:1.06rem;color:var(--muted);max-width:60ch}
+.muted{color:var(--muted)}
+.tag{align-self:flex-start;font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+
+/* Barra de avance */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px;display:flex;flex-direction:column;gap:8px}
+.top-txt{display:flex;justify-content:space-between;gap:12px;font-size:.88rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.top-txt b{color:var(--ink)}
+.track{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+
+.wrap{max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 130px}
+.screen{display:flex;flex-direction:column;gap:18px}
+
+/* Portada: notificaciones del asistente */
+.phone{background:var(--ink);border-radius:26px;padding:14px 12px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(42,33,24,.18)}
+.phone .clock{color:#F5EBCF;text-align:center;font-family:var(--display);font-size:1.9rem;line-height:1;margin:2px 0 6px;font-variant-numeric:tabular-nums}
+.phone .day{color:#CDBF9F;text-align:center;font-size:.78rem;margin-top:-4px;margin-bottom:6px}
+.noti{background:rgba(255,253,246,.94);border-radius:14px;padding:9px 12px;display:flex;gap:10px;align-items:flex-start;animation:in .5s ease both}
+.noti:nth-of-type(2){animation-delay:.35s} .noti:nth-of-type(3){animation-delay:.7s}
+@keyframes in{from{transform:translateY(8px);opacity:.2}to{transform:none;opacity:1}}
+.noti .av{flex:none;width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
+.noti .av svg{width:17px;height:17px}
+.noti div{min-width:0;font-size:.88rem;line-height:1.35;color:var(--ink)}
+.noti small{display:flex;justify-content:space-between;gap:8px;font-size:.72rem;color:var(--muted);font-weight:600}
+.noti b{color:var(--ok)}
+.founder{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
+.founder .sig{font-size:.88rem;color:var(--muted);font-weight:600}
+.gets{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.gets li{display:flex;gap:12px;align-items:flex-start}
+.gets .ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.gets .ic svg{width:19px;height:19px}
+.gets b{display:block}
+.gets span.t{color:var(--muted);font-size:.95rem}
 .note{font-size:.88rem;color:var(--muted);text-align:center}
 
-.btn{appearance:none;border:0;border-radius:999px;font:600 1rem var(--body);padding:15px 22px;cursor:pointer;transition:transform .12s ease, opacity .12s}
-.btn:active{transform:scale(.98)}
-.btn-primary{background:var(--accent);color:var(--accent-ink);width:100%}
-.btn-primary[disabled]{opacity:.4;cursor:not-allowed}
-.btn-ghost{background:transparent;color:var(--muted);padding-inline:6px}
-.btn-line{background:var(--surface);color:var(--ink);border:1.5px solid var(--line);width:100%}
-.btn:focus-visible,.opt:focus-visible,.pill:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+/* Píldora: beneficio de la función detrás de cada pregunta */
+.pildora{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.cap{flex:none;width:34px;height:16px;margin-top:4px;border-radius:99px;background:linear-gradient(90deg,var(--accent) 50%,var(--ex) 50%);border:1.5px solid var(--accent);transform:rotate(-30deg)}
+.pildora div{min-width:0;font-size:.95rem;line-height:1.4}
+.pildora i{font-style:normal;display:block;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:1px}
 
-.progress{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.progress i{height:6px;border-radius:3px;background:var(--line)}
-.progress i.on{background:var(--accent)}
-.meta{display:flex;justify-content:space-between;gap:8px;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
-.hint{color:var(--muted);font-size:.92rem}
-.qbody{display:grid;gap:16px}
-.qtext strong{font-weight:700}
-.opts{display:grid;gap:10px}
-.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:13px 16px;font:500 1rem var(--body);color:var(--ink);cursor:pointer}
-.opt .box{flex:none;width:20px;height:20px;border:2px solid var(--line);border-radius:50%;display:grid;place-items:center}
-.opt.multi .box{border-radius:6px}
+/* Opciones */
+.hint{color:var(--muted);font-size:.93rem;margin-top:-8px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;font:500 1rem/1.35 var(--body);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.opt .box{flex:none;width:22px;height:22px;border:2px solid #CDBF9F;border-radius:50%;display:grid;place-items:center}
+.opt.multi .box{border-radius:7px}
 .opt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft)}
 .opt[aria-checked="true"] .box{border-color:var(--accent);background:var(--accent)}
-.opt[aria-checked="true"] .box::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent-ink)}
+.opt[aria-checked="true"] .box::after{content:"";width:9px;height:9px;border-radius:2px;background:var(--accent-ink)}
 .opt[aria-disabled="true"]{opacity:.45}
+.opt small{display:block;color:var(--muted);font-size:.85rem;font-weight:400}
 
-.matrix{display:grid;gap:12px}
-.mrow{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;display:grid;gap:10px}
-.mrow .lbl strong{display:block}
-.mrow .lbl span{color:var(--muted);font-size:.92rem}
-.pills{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.pill{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:12px;padding:8px 4px;font:500 .8rem/1.25 var(--body);cursor:pointer;min-height:44px}
+/* Tarjetas de función */
+.cards{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s}
+.card.rated{border-color:var(--accent)}
+.card b{font-size:1.04rem;line-height:1.3}
+.fn{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.ex{display:block;background:var(--ex);border-radius:4px 12px 12px 12px;padding:8px 11px;font-size:.93rem;line-height:1.4}
+.ex i{font-style:normal;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ok);display:block;margin-bottom:1px}
+.pills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.pill{font:600 .84rem/1.2 var(--body);min-height:48px;padding:6px 4px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
 .pill[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.pill.no[aria-checked="true"]{background:var(--no);border-color:var(--no)}
+.pill.pay[aria-checked="true"]{background:var(--ok);border-color:var(--ok)}
 
-.ladder{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:grid;gap:16px;text-align:center}
-.ladder .price{font-family:var(--mono);font-size:clamp(2rem,9vw,2.6rem);letter-spacing:-0.02em;color:var(--ink)}
-.ladder .price small{font-size:.9rem;color:var(--muted);letter-spacing:0}
-.yn{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ladder .count{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
-.ladder .prev{font-size:.88rem;color:var(--muted)}
+/* Asistente */
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:8px}
+.bub{max-width:85%;padding:8px 12px;border-radius:14px;font-size:.95rem;line-height:1.4}
+.bub.me{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px}
+.bub.ai{align-self:flex-start;background:var(--ex);border-bottom-left-radius:4px}
+.bub small{display:block;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.75}
 
-.field{display:grid;gap:6px}
-.field label{font-weight:500}
-.field input[type=tel],.field input[type=text]{font:1rem var(--body);padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+/* Planes */
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.tool b{font-size:.95rem}
+.tool span{font-size:.82rem;color:var(--muted);line-height:1.3}
+.rules{display:flex;flex-wrap:wrap;gap:6px}
+.rules span{font-size:.82rem;font-weight:600;background:var(--ok-soft);color:var(--ok);border-radius:999px;padding:4px 10px}
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pc{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px}
+.pc.mid{border-color:var(--accent)}
+.pc b{font-size:.95rem}
+.pc .pr{font-family:var(--display);font-weight:700;font-size:1.15rem;font-variant-numeric:tabular-nums;color:var(--accent)}
+.pc small{color:var(--muted);font-size:.76rem;line-height:1.25}
+.tbl{overflow-x:auto;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r)}
+.cmp{width:100%;border-collapse:collapse;font-size:.86rem}
+.cmp th,.cmp td{padding:8px 5px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+.cmp td.fname{text-align:left;padding-left:12px;font-weight:500;min-width:128px}
+.cmp tr.sec th{background:var(--ex);font-size:.76rem;font-weight:700;text-align:center;position:sticky;top:0}
+.cmp tr.sec th:first-child{text-align:left;padding-left:12px;font-size:.84rem}
+.cmp td.yes{color:var(--ok);font-weight:700;font-size:1.05rem}
+.cmp td.off{color:var(--off)}
+.cmp td.txt{font-size:.76rem;line-height:1.25}
+.cmp tr:last-child td{border-bottom:0}
+.legend{font-size:.84rem;color:var(--muted)}
+.legend .yes{color:var(--ok);font-weight:700} .legend .off{color:var(--off)}
+
+/* Llamado a unirse */
+.join{background:var(--accent-deep);color:#FFFFFF;border-radius:22px;padding:22px 18px;display:flex;flex-direction:column;gap:14px}
+.join .tag{color:#B9CCE4}
+.join h2{color:#FFFFFF;font-size:clamp(1.7rem,7vw,2.1rem)}
+.join p{color:#D5E0EE}
+.perks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.perks li{display:flex;gap:10px;align-items:flex-start;color:#FFFFFF;font-size:.97rem;line-height:1.4}
+.perks .ck{flex:none;width:24px;height:24px;border-radius:50%;background:#FFFFFF;color:var(--accent-deep);display:grid;place-items:center;margin-top:1px}
+.perks .ck svg{width:14px;height:14px}
+.skip{font:inherit;font-size:.95rem;font-weight:600;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;align-self:center;padding:8px}
+
+/* Campos */
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:600}
+.field label span{color:var(--muted);font-weight:400}
+input[type=tel],input[type=text],input[type=email]{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;width:100%}
+input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:var(--muted)}
-.check input{width:20px;height:20px;accent-color:var(--accent);flex:none;margin-top:2px}
+.check input{width:22px;height:22px;accent-color:var(--accent);flex:none;margin-top:1px}
+.err{color:var(--no);font-size:.9rem;font-weight:600}
 
-.nav{display:flex;gap:10px;align-items:center}
-.nav .btn-primary{flex:1}
-.err{color:var(--accent);font-size:.9rem}
-.demo{font-size:.84rem;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:10px 12px}
-.done{text-align:center;justify-items:center;display:grid;gap:14px;padding-top:24px}
-.done .mark{width:64px;height:64px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center}
-.done .mark svg{width:30px;height:30px}
-.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;text-align:left}
-.calc b{font-family:var(--mono);font-weight:500}
-.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
-.field .err{margin:0}
-@media (prefers-reduced-motion: reduce){ .btn{transition:none} }
+/* Final */
+.done-h{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding-top:12px}
+.mark{width:68px;height:68px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center}
+.mark svg{width:32px;height:32px}
+.calc{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:6px}
+.calc .k{font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+.calc .big{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,7vw,2rem);font-variant-numeric:tabular-nums;color:var(--no);line-height:1.15}
+.calc small{color:var(--muted);font-size:.86rem}
+.share{background:var(--accent-soft);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:12px}
+.share-btns{display:flex;flex-direction:column;gap:8px}
+a.btn{display:flex;align-items:center;justify-content:center;text-decoration:none;gap:8px}
+.btn-wa{background:#1E7A4C;color:#FFFFFF}
+.btn-wa svg{width:20px;height:20px}
+
+/* Navegación inferior */
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);z-index:6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.nav-in{max-width:600px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.btn{flex:1;font:inherit;font-weight:700;border:0;border-radius:999px;min-height:54px;padding:0 24px;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-line{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.back{flex:none;background:none;border:0;font:inherit;font-weight:600;color:var(--muted);padding:0 10px;min-height:54px;cursor:pointer}
+.btn:focus-visible,.opt:focus-visible,.pill:focus-visible,.back:focus-visible,.skip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media (prefers-reduced-motion: reduce){ .track i,.opt,.card{transition:none} .noti{animation:none} }
 </style>
 </head>
 <body>
+
+<div class="top" id="top" hidden>
+  <div class="top-in">
+    <div class="top-txt"><span id="topSec"></span><span><b id="topN">1</b> de <b id="topT">1</b></span></div>
+    <div class="track" aria-hidden="true"><i id="topBar"></i></div>
+  </div>
+</div>
+
 <main class="wrap">
-  <div class="hp" aria-hidden="true"><label for="website">No llenes este campo</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-  <section id="intro" class="screen">
-    <div class="brand"><b>Tu cartera, contigo</b></div>
-    <div class="hook" aria-hidden="true">
-      <svg viewBox="0 0 220 132" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="14" y="16" width="128" height="104" rx="12"/>
-        <path d="M14 40h128M44 9v14M112 9v14"/>
-        <g stroke-width="1.6" opacity=".55">
-          <rect x="28" y="52" width="22" height="16" rx="4"/><rect x="56" y="52" width="22" height="16" rx="4"/><rect x="84" y="52" width="22" height="16" rx="4"/><rect x="112" y="52" width="18" height="16" rx="4"/>
-          <rect x="28" y="76" width="22" height="16" rx="4"/><rect x="84" y="76" width="22" height="16" rx="4"/><rect x="112" y="76" width="18" height="16" rx="4"/>
-          <rect x="28" y="100" width="22" height="12" rx="4"/><rect x="56" y="100" width="22" height="12" rx="4"/>
-        </g>
-        <g class="hot"><rect x="56" y="76" width="22" height="16" rx="4"/><path d="M61 80l12 8M73 80l-12 8"/></g>
-        <g class="hot" transform="translate(162 24)">
-          <circle cx="10" cy="74" r="9"/><circle cx="38" cy="74" r="9"/>
-          <path d="M16 67L44 6M32 67L4 6"/><circle cx="24" cy="50" r="2.2" fill="currentColor"/>
-        </g>
-      </svg>
-      <div><span class="hook-k">Tu cifra, al final</span><span class="hook-t">Calculamos cuánto podría costarte al mes cada cita que no llega.</span></div>
-    </div>
-    <h1>¿Cuánto te cuesta una cita que no llega?</h1>
-    <p class="lead">Casi ningún estilista lo ha calculado. Responde unas preguntas cortas y al final te mostramos la tuya. Con tus respuestas estamos creando una app para que tu talento rinda más.</p>
-    <button class="btn btn-primary" id="start" type="button">Empezar</button>
-    <p class="note">Menos de 5 minutos · sin registrarte</p>
-  </section>
-
-  <section id="survey" class="screen" hidden>
-    <div class="progress" id="progress" aria-hidden="true"></div>
-    <div class="meta"><span id="sec"></span><span id="step"></span></div>
-    <div id="q" class="qbody"></div>
-    <p class="err" id="err" hidden></p>
-    <div class="nav">
-      <button class="btn btn-ghost" id="back" type="button">Atrás</button>
-      <button class="btn btn-primary" id="next" type="button" disabled>Siguiente</button>
-    </div>
-  </section>
-
-  <section id="done" class="done" hidden>
-    <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-    <h2 id="doneTitle">¡Listo! Tu respuesta quedó registrada</h2>
-    <p class="lead" id="doneMsg"></p>
-    <div class="calc" id="calc" hidden></div>
-    <button class="btn btn-line" id="again" type="button" hidden>Soy otro estilista y quiero responder</button>
-    <p class="demo" id="demoNote" hidden>Vista previa: esta copia de la página no guarda respuestas. La versión publicada en su sitio web las registra en la hoja de cálculo.</p>
-  </section>
+  <div class="hp" aria-hidden="true"><label for="website">No llenar</label><input id="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <div id="view"></div>
 </main>
+
+<nav class="nav" id="nav" aria-label="Navegación">
+  <div class="nav-in">
+    <button class="back" id="back" type="button" hidden>Atrás</button>
+    <button class="btn" id="next" type="button">Quiero ser parte</button>
+  </div>
+</nav>
 
 <script>
 /* ===== Configuración =====
-   Pegue aquí la URL del Apps Script publicado como aplicación web.
-   Vacía = modo vista previa (no guarda nada). */
+   ENDPOINT: URL /exec del Apps Script. Vacía = vista previa (no guarda nada).
+   SHARE_URL: enlace público de la encuesta que se comparte con colegas. */
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbxghT58SFYvwWtpGI5a5aA3rd1C0Is0Wjg5mFD8GpqkSn7lPfPLrHAGAMA_fGGNsRnYkg/exec";
-const FORM_VERSION = "6";
-const STORE_KEY = "encuesta_estilistas_v6";
-const SID = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 12));
+const SHARE_URL = "https://cjzrcg.github.io/encuesta-estilistas/";
+const VERSION = "7";
+const STORE = "encuesta_estilistas_v7";
+const SID = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,12));
 let T0 = 0;
-const telOk = t => !t || /^3\d{9}$/.test(t.replace(/\D/g, ""));
-const store = {
-  get(){ try { return localStorage.getItem(STORE_KEY); } catch(e){ return null; } },
-  set(){ try { localStorage.setItem(STORE_KEY, new Date().toISOString()); } catch(e){} },
-  clear(){ try { localStorage.removeItem(STORE_KEY); } catch(e){} }
-};
 
-const SECS = ["Tu trabajo","Tu situación actual","Funcionalidades","Intención de uso","Disposición a pagar","Servicios futuros","Inscripción"];
-const O1 = ["En un salón, por porcentaje","Arriendo un puesto en un salón","Empleado de un salón con salario fijo","En mi propio local","A domicilio o en mi casa","No trabajo actualmente como estilista"];
+const SECS = ["Tu trabajo","Tu día a día","Funciones","Tu asistente","Planes","Para terminar"];
+const O1 = ["En un salón, por porcentaje","Arriendo una silla en un salón","Con salario fijo en un salón","En mi propio local","A domicilio o en mi casa","No trabajo actualmente como estilista"];
 const O4 = ["Menos de $20.000","Entre $20.000 y $35.000","Entre $35.001 y $60.000","Más de $60.000"];
-const O6 = ["Ninguno","De 1 a 3","De 4 a 7","8 o más","No trabajo con citas, atiendo por orden de llegada"];
-const O12 = ["Muy probable","Algo probable","Poco probable","Nada probable"];
-const O16 = ["Sí, quiero apartar mi cupo","Sí, pero primero quiero probar la versión gratuita","Me interesa, pero el dueño del salón no lo aceptaría","No por ahora"];
-const C10 = ["No me sirve","Me sirve, pero no pagaría por ella","Pagaría por ella"];
-const R10 = [
-  ["perfil","Perfil y directorio","Tu perfil con tu especialidad y fotos de tus trabajos, en un directorio donde clientes de tu zona buscan estilista."],
-  ["agenda","Agenda en línea","Tus clientes ven tu disponibilidad y reservan solos, sin escribirte."],
-  ["recordatorios","Confirmación y recordatorios","El cliente confirma la cita el día anterior y recibe un aviso cuando le toca volver, según cada cuánto viene."],
-  ["historial","Historial de preferencias","Guardas cómo le gusta el corte a cada cliente, la fórmula de color o los productos que usa."],
-  ["cartera","Cartera que va contigo","Tus clientes siguen contigo si cambias de salón o de zona, con su autorización."],
-  ["metas","Metas de ingresos","Defines cuánto quieres ganar al mes y la app te dice cuántos servicios te faltan y qué clientes contactar para lograrlo."],
-  ["reportes","Reportes de ingresos","Cada servicio queda registrado y ves cuánto ganas por semana, por tipo de servicio y por cliente."]
-];
-const R15 = [
-  ["silla","Reservar sillas por horas o días en salones aliados"],
-  ["vacantes","Postularte a vacantes de salones"],
-  ["insumos","Comprar insumos con descuento por volumen"],
-  ["cursos","Cursos y beneficios de marcas profesionales"],
-  ["destacado","Perfil destacado: aparecer primero en el directorio de tu zona por una tarifa fija mensual"],
-  ["credito","Crédito para equipos, cursos o local, con tu historial de trabajo en la app y una entidad aliada"]
-];
-const PRICES = [25000,35000,45000,60000];
+const O6 = ["Ninguna","De 1 a 3","De 4 a 7","8 o más","No trabajo con citas, atiendo por orden de llegada"];
+const OI = ["Muy probable","Algo probable","Poco probable","Nada probable"];
+const OP = ["Presencia · $30.000 al mes","Pro · $50.000 al mes","Élite · $70.000 al mes","Primero la pruebo 3 días y después decido"];
+const OPR = ["Barato","Justo","Caro, pero lo pagaría","Muy caro, no lo pagaría"];
+const RATE = ["No me sirve","Me sirve","Pagaría por ella"];
+const OH = ["Escribiéndole, como en WhatsApp","Con notas de voz","De las dos formas","No usaría un asistente"];
 
-const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]]; } return b; };
-const R10s = shuffle(R10), R15s = shuffle(R15);
-const O9 = shuffle(["Me faltan clientes nuevos","Mis clientes no vuelven con la frecuencia que deberían","Clientes que no llegan a la cita","Pierdo clientes cuando cambio de salón o ellos se mudan","No tengo claro cuánto gano ni cómo mejorar","No tengo acceso a crédito para crecer","Los clientes se van con alguien más barato"]).concat(["Ninguna de estas"]);
-const money = n => "$" + n.toLocaleString("es-CO");
+const shuffle = a=>{ const b=[...a]; for(let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]]; } return b; };
+const money = n=>"$"+n.toLocaleString("es-CO");
+
+/* Funciones a calificar: nombre y beneficio para el estilista */
+const F1 = shuffle([
+ ["f_asistente","Asistente que agenda por ti","Tus clientes reservan escribiendo o con una nota de voz, a cualquier hora, sin que dejes de atender. No pierdes reservas por responder tarde."],
+ ["f_pagina","Tu página con precios y botón Reservar","Tienes un enlace propio para tu Instagram y tu WhatsApp donde ven tus trabajos y tus precios, y reservan solos. Te ves más profesional."],
+ ["f_recordatorios","Recordatorios por WhatsApp","El sistema le recuerda la cita al cliente el día antes y él confirma con un toque. Menos citas perdidas, sin escribir uno por uno."],
+ ["f_buscador","Aparecer en el buscador","Personas de tu zona que buscan tu especialidad te encuentran aunque no te conozcan. Clientes nuevos sin pagar publicidad."],
+ ["f_confianza","Identidad verificada y opiniones reales","Un sello de identidad y opiniones de clientes con cita real le dan confianza a quien todavía no te conoce. Más reservas de clientes nuevos."]
+]);
+const F2 = shuffle([
+ ["f_volver","Clientes por volver","Te avisa a qué cliente le toca volver, según cada cuánto viene, con el mensaje listo para enviar. Recuperas citas que se te pasaban."],
+ ["f_clientela","Mi clientela","Si registras cada servicio, guardas la fórmula, las preferencias y el historial de cada cliente. Y esa clientela te sigue si cambias de salón."],
+ ["f_cuentas","Mis cuentas y reportes","Si registras tus servicios y gastos, tienes reportes de cuánto ganas por semana, qué servicio te deja más por hora, quiénes son tus mejores clientes y un resumen anual para tu contador."],
+ ["f_consejos","Tu asistente te aconseja","Revisa tu agenda y tus números y te dice qué horas llenar, a quién escribir y qué ofrecer. Decides con datos, no al tanteo."],
+ ["f_garantia","Tu garantía (opcional)","Si quieres, ofreces unos días de ajuste sin costo. Al cliente nuevo le da seguridad para elegirte. Tú decides si la activas."]
+]);
+const FALL = F1.concat(F2);
+const FUT = [["t_tienda","Tienda de productos","Pides tus insumos desde la plataforma y te llegan sin salir a comprar."],["t_salones","Vacantes y sillas en salones","Encuentras sillas en arriendo y vacantes en salones de tu zona."],["t_credito","Crédito con una entidad aliada","Accedes a crédito para equipos usando tu historial de trabajo en la plataforma."]];
+const FUTC = ["No me interesa","Me interesa","Me interesa mucho"];
+
+/* Qué incluye cada plan (Presencia, Pro, Élite). "✓" incluido, "" no incluido, texto = alcance */
+const PLANS = [{n:"Presencia",p:30000},{n:"Pro",p:50000},{n:"Élite",p:70000}];
+const CMP = [
+ ["Tu asistente",[
+  ["Agenda por ti, por texto o voz",["✓","✓","✓"]],
+  ["Resumen de tu semana",["✓","✓","✓"]],
+  ["Consultas al asistente al mes",["Básicas","Ampliadas","Máximas"]],
+  ["Clientes por volver",["","✓","✓"]],
+  ["Mensajes listos para enviar",["","40 al mes","120 al mes"]],
+  ["Plan semanal y consejos",["","✓","✓"]],
+  ["Metas de ingresos",["","Mensual","Semanal"]],
+  ["Aviso cuando se te acaban productos",["✓","✓","✓"]]]],
+ ["Atrae clientes",[
+  ["Tu página profesional",["✓","✓","Con dirección propia"]],
+  ["Tus redes conectadas",["✓","✓","✓"]],
+  ["Menú de servicios con fotos",["Hasta 10","Ilimitado","Ilimitado"]],
+  ["Aparecer en el buscador",["✓","✓","✓"]],
+  ["Salir primero en el buscador",["","","✓"]],
+  ["Sugerir servicios adicionales al reservar",["","✓","✓"]],
+  ["Código QR para tu espejo",["✓","✓","✓"]],
+  ["Visitas a tu página",["","Básico","Completo"]]]],
+ ["Confianza",[
+  ["Identidad verificada",["✓","✓","✓"]],
+  ["Dónde trabajas, confirmado",["✓","✓","✓"]],
+  ["Tus precios a la vista",["✓","✓","✓"]],
+  ["Opiniones de clientes con cita",["✓","✓","✓"]],
+  ["Responder opiniones",["","✓","✓"]],
+  ["Fotos de trabajos comprobados",["Hasta 10","Ilimitadas","Ilimitadas"]],
+  ["Tu experiencia y trayectoria",["","✓","✓"]],
+  ["Tu garantía (opcional)",["✓","✓","✓"]]]],
+ ["Agenda y clientela",[
+  ["Agenda en línea",["✓","✓","✓"]],
+  ["Espacios libres de hoy y mañana",["✓","✓","✓"]],
+  ["Recordatorios por WhatsApp",["30 al mes","Ilimitados","Ilimitados"]],
+  ["Lista de espera",["","✓","✓"]],
+  ["Ficha de cada cliente",["Últimas 3 visitas","Completa","Completa"]],
+  ["Mi clientela",["✓","✓","✓"]],
+  ["Tus clientes te siguen si cambias de salón",["✓","✓","✓"]],
+  ["Descarga tu información",["✓","✓","✓"]]]],
+ ["Tus cuentas",[
+  ["Mis cuentas",["Solo ingresos","Completo","Completo"]],
+  ["Qué servicio te deja más",["","✓","✓"]],
+  ["Reporte para tu contador",["","✓","✓"]],
+  ["Reportes avanzados",["","","✓"]],
+  ["Tendencias de la temporada",["Mensual","Semanal","Semanal y alertas"]]]]
+];
+const NF = CMP.reduce((t,g)=>t+g[1].length,0);
+const countPlan = i=>CMP.reduce((t,g)=>t+g[1].filter(r=>r[1][i]).length,0);
 
 const A = {};
-const high = a => a.q12===O12[0] || a.q12===O12[1];
-const low  = a => a.q12===O12[2] || a.q12===O12[3];
-const salon = a => O1.slice(0,3).includes(a.q1);
-const useful = a => R10.filter(r => a.q10 && a.q10[r[0]] && a.q10[r[0]]!==C10[0]).map(r => r[1]);
+const high = a=>a.q_intencion===OI[0] || a.q_intencion===OI[1];
+const low  = a=>a.q_intencion===OI[2] || a.q_intencion===OI[3];
+const useful = a=>FALL.filter(f=>{ const v=(a.q_f||{})[f[0]]; return v && v!==RATE[0]; }).map(f=>f[1]);
+const planIdx = a=>OP.indexOf(a.q_plan);
 
 const STEPS = [
- {id:"q1", sec:0, type:"single", t:"¿Cómo trabajas principalmente hoy?", o:O1, endIf:a=>a.q1===O1[5]?"screen":null},
- {id:"q2", sec:0, type:"single", t:"¿Cuál es tu especialidad principal?",
-  o:["Corte y peinado","Barbería","Color y mechas","Alisados y tratamientos","Rizos","Novias y eventos","Hago de todo un poco"]},
- {id:"q3", sec:0, type:"single", t:"Aproximadamente, ¿cuántos clientes vuelven contigo al menos cada dos meses?", o:["Menos de 30","Entre 30 y 50","Entre 51 y 150","Más de 150"]},
- {id:"q4", sec:0, type:"single", t:"¿Cuánto cobras normalmente por tu servicio más frecuente?", o:O4},
- {id:"q5", sec:1, type:"multi", excl:"Casi no me llegan clientes nuevos", t:"¿Cómo te llegan los clientes nuevos?", h:"Marca todas las que apliquen.",
-  o:["Recomendación de mis clientes","Instagram, TikTok u otra red social","Pasan por el salón o el local","Google o Google Maps","Una app o un directorio","Casi no me llegan clientes nuevos"]},
- {id:"q6", sec:1, type:"single", t:"En un mes normal, ¿cuántos clientes no llegan a su cita o cancelan el mismo día?", o:O6},
- {id:"q7", sec:1, type:"single", t:"¿Cómo llevas la cuenta de lo que ganas cada mes?",
-  o:["No llevo la cuenta; lo sé más o menos","Lo anoto en un cuaderno o en el celular","Uso Excel o una app","El salón me lleva la cuenta"]},
- {id:"q8", sec:1, type:"single", t:"En el último año, ¿necesitaste un crédito para tu trabajo (equipos, cursos o local)?",
-  o:["No lo necesité","Lo necesité y lo conseguí con un banco o una entidad financiera","Lo necesité, pero me lo negaron o no cumplía los requisitos","Lo conseguí con un prestamista informal (gota a gota)","Lo conseguí con familiares o amigos","Lo necesité, pero no lo intenté"]},
- {id:"q9", sec:1, type:"multi", max:2, excl:"Ninguna de estas", t:"¿Qué es lo que más te impide ganar más?", h:"Elige máximo 2.", o:O9},
- {id:"q10", sec:2, type:"matrix", t:"Estas son funciones que podría tener la app. Para cada una, dinos qué tan útil sería para ti.", cols:C10, rows:R10s},
- {id:"q11", sec:2, type:"single", t:"De las funciones que te sirven, ¿cuál es la más importante para ti?", dyn:useful, cond:a=>useful(a).length>=2},
- {id:"q12", sec:3, type:"single", html:true,
-  t:"La app tendría una <strong>versión gratuita</strong>, con tu perfil en el directorio, la agenda en línea y tu cartera de clientes, y una <strong>versión Pro</strong>, que agrega confirmación de citas y recordatorios para volver, historial de preferencias de tus clientes, y metas y reportes de ingresos. Si estuviera disponible en tu zona, ¿qué tan probable es que la uses?",
-  o:O12},
- {id:"q13", sec:3, type:"single", cond:low, t:"¿Qué es lo que más te frena para usarla?",
-  o:["No la necesito, así me va bien","Mis clientes no usarían una app","Prefiero seguir como estoy (WhatsApp, cuaderno)","No quiero depender de una app o compartir mis datos","El dueño del salón no lo permitiría","Otra razón"], endIf:()=>"low"},
- {id:"q14", sec:4, type:"ladder", cond:high},
- {id:"q15", sec:5, type:"matrix", cond:high, t:"Más adelante podríamos ofrecer estos servicios. ¿Qué tanto te interesan?", cols:["No me interesa","Me interesa","Me interesa mucho"], rows:R15s},
- {id:"q16", sec:6, type:"single", cond:high,
-  t:"Estamos abriendo cupos de Estilista Fundador en tu zona: primer mes gratis en la versión Pro, precio de lanzamiento congelado mientras sigas activo y $15.000 por cada colega que invites y complete 3 meses en la versión Pro. ¿Te gustaría apartar un cupo?",
-  dyn:a=>O16.filter((o,k)=>k!==2 || salon(a))},
- {id:"contacto", sec:6, type:"contact", cond:a=>high(a) && (a.q16===O16[0] || a.q16===O16[1])}
+ {id:"q_trabajo", sec:0, type:"single", t:"¿Cómo trabajas hoy?", o:O1, endIf:a=>a.q_trabajo===O1[5]?"screen":null,
+  p:"Con Mi clientela, tus clientes quedan contigo: si cambias de salón o de zona, te siguen y te reservan donde estés."},
+ {id:"q_especialidad", sec:0, type:"single", t:"¿Cuál es tu especialidad principal?", o:["Corte y peinado","Barbería","Color y mechas","Alisados y tratamientos","Rizos","Uñas y pestañas","Novias y eventos","Hago de todo un poco"],
+  p:"Tu página destaca tu especialidad con fotos de trabajos reales, para atraer a quien busca justo lo que haces mejor."},
+ {id:"q_clientes", sec:0, type:"single", t:"¿Cuántos clientes vuelven contigo al menos cada dos meses?", o:["Menos de 30","Entre 30 y 50","Entre 51 y 150","Más de 150"],
+  p:"Con Clientes por volver, el asistente te avisa cuándo le toca volver a cada cliente, para que ninguno se te pase."},
+ {id:"q_precio_servicio", sec:0, type:"single", t:"¿Cuánto cobras por tu servicio más frecuente?", o:O4,
+  p:"Con tus precios a la vista, el cliente llega sabiendo cuánto paga: menos preguntas por WhatsApp y nada de regateo."},
+ {id:"q_nuevos", sec:1, type:"multi", excl:"Casi no me llegan clientes nuevos", t:"¿Cómo te llegan los clientes nuevos?", h:"Marca todas las que apliquen.",
+  o:["Recomendación de mis clientes","Instagram, TikTok u otra red","Pasan por el salón o el local","Google o Google Maps","Una app o un directorio","Casi no me llegan clientes nuevos"],
+  p:"Con el buscador y tu enlace en redes, ganas clientes nuevos que te encuentran por especialidad y por zona."},
+ {id:"q_agenda", sec:1, type:"single", t:"¿Cómo agendas hoy tus citas?", o:["Por WhatsApp o llamadas","En un cuaderno o agenda de papel","En el calendario del celular","Con una app de citas (Lizto, Booksy, Fresha u otra)","El salón me agenda","No agendo: atiendo por orden de llegada"],
+  p:"Con la agenda en línea y el asistente, los clientes reservan solos a cualquier hora y tú dejas de responder mensaje por mensaje."},
+ {id:"q_fallan", sec:1, type:"single", t:"En un mes normal, ¿cuántas citas no llegan o se cancelan el mismo día?", o:O6,
+  p:"Con recordatorios por WhatsApp y lista de espera, las citas se confirman solas y un espacio cancelado se vuelve a llenar."},
+ {id:"q_cuentas", sec:1, type:"single", t:"¿Cómo llevas la cuenta de lo que ganas?", o:["No llevo la cuenta; lo sé más o menos","Lo anoto en un cuaderno o en el celular","Uso Excel o una app","El salón me lleva la cuenta"],
+  p:"Con Mis cuentas, si registras tus servicios tienes reportes de ganancias por semana, por servicio y por cliente, y un resumen para tu contador."},
+ {id:"q_frenos", sec:1, type:"multi", max:3, excl:"Ninguna de estas", t:"¿Qué te impide ganar más?", h:"Elige hasta 3.",
+  o:shuffle(["Me faltan clientes nuevos","Mis clientes no vuelven tan seguido como deberían","Clientes que no llegan a la cita","Pierdo clientes cuando cambio de salón o se mudan","No tengo claro cuánto gano ni qué me deja más","Los clientes se van con alguien más barato","Se me va mucho tiempo respondiendo WhatsApp"]).concat(["Ninguna de estas"]),
+  p:"Cada función responde a un problema real. Lo que marques aquí define qué resolvemos primero."},
+ {id:"q_f", part:F1, sec:2, type:"rate", t:"¿Te serviría?", h:"Cada función dice lo que ganas con ella. Califica las 5.",
+  p:"Piensa en una semana normal tuya: ¿esto te ahorra tiempo o te trae ingresos?"},
+ {id:"q_f", part:F2, sec:2, type:"rate", t:"Unas más", h:"Califica las 5.",
+  p:"\"Pagaría por ella\" nos dice qué incluir en cada plan. Responde con sinceridad: no hay respuestas malas."},
+ {id:"q_top", sec:2, type:"single", t:"De las que te sirven, ¿cuál es la más importante para ti?", dyn:useful, cond:a=>useful(a).length>=2,
+  p:"La función que más elijan los estilistas es la primera que se construye."},
+ {id:"q_hablar", sec:3, type:"assistant",
+  p:"Con el asistente tienes las manos libres: si estás atendiendo, una nota de voz basta para que agende, responda o te dé un resumen."},
+ {id:"q_limite", sec:3, type:"single", cond:a=>a.q_hablar!==OH[3],
+  t:"Cada plan trae un número de consultas al asistente al mes. Si se te acaban antes de fin de mes, ¿qué preferirías?",
+  o:["Que me avise y esperar al siguiente mes","Comprar un paquete de consultas en ese momento","Pasarme a un plan con más consultas"],
+  p:"Un tope de consultas al mes es lo que permite mantener los planes en precios bajos para todos."},
+ {id:"q_intencion", sec:4, type:"plans", t:"Si estuviera disponible en tu ciudad, ¿qué tan probable es que la uses?", o:OI},
+ {id:"q_barrera", sec:4, type:"single", cond:low, t:"¿Qué es lo que más te frena?",
+  o:["No la necesito, así me va bien","El precio","Mis clientes no usarían una plataforma","Prefiero seguir como estoy (WhatsApp, cuaderno)","No quiero compartir mis datos","El dueño del salón no lo permitiría","Otra razón"], endIf:()=>"low",
+  p:"Tu razón pesa tanto como un sí: nos ayuda a corregir lo que no te convence."},
+ {id:"q_plan", sec:4, type:"single", cond:high, t:"¿Qué plan elegirías?", o:OP,
+  sub:[`${countPlan(0)} funciones · página, agenda y asistente`,`${countPlan(1)} funciones · lo más completo para crecer tu clientela`,`${countPlan(2)} funciones · todo, y sales primero en el buscador`,""],
+  p:"Puedes cambiar de plan cuando quieras sin perder tu página, tu agenda ni tu clientela."},
+ {id:"q_precio_plan", sec:4, type:"single", cond:a=>high(a) && planIdx(a)>=0 && planIdx(a)<3, tf:a=>{ const p=PLANS[planIdx(a)]; return `El plan ${p.n} a ${money(p.p)} al mes te parece…`; }, o:OPR,
+  p:"Tu respuesta ayuda a fijar un precio justo para ti y sostenible para la plataforma."},
+ {id:"q_precio_max", sec:4, type:"single", cond:a=>high(a) && a.q_precio_plan===OPR[3], t:"¿Hasta cuánto pagarías al mes?", o:["Menos de $20.000","Entre $20.000 y $29.000","Entre $30.000 y $49.000","Entre $50.000 y $69.000"],
+  p:"Con este dato ajustamos qué va en cada plan para que el precio te cuadre."},
+ {id:"q_futuro", sec:5, type:"future", cond:high, t:"Más adelante podríamos sumar esto. ¿Te interesa?",
+  p:"Esto llegaría en etapas siguientes. Tu interés decide el orden."},
+ {id:"unirse", sec:5, type:"join", cond:high}
 ];
 
-let cur = 0;
-const $ = s => document.querySelector(s);
-const visible = () => STEPS.filter(s => !s.cond || s.cond(A));
-const optsOf = s => s.dyn ? s.dyn(A) : s.o;
+let cur = -1; // -1 = portada
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const telOk = t=>!t || /^3\d{9}$/.test(t.replace(/\D/g,""));
+const mailOk = m=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m||"");
+const store = { get(){ try{ return localStorage.getItem(STORE); }catch(e){ return null; } }, set(){ try{ localStorage.setItem(STORE,new Date().toISOString()); }catch(e){} }, clear(){ try{ localStorage.removeItem(STORE); }catch(e){} } };
+const visible = ()=>STEPS.filter(s=>!s.cond || s.cond(A));
+const optsOf = s=>s.dyn ? s.dyn(A) : s.o;
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const SPARK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>';
+const WA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.8A8 8 0 1 1 8 19z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2z"/></svg>';
 
 function answered(s){
   const v = A[s.id];
   if(s.type==="multi") return Array.isArray(v) && v.length>0;
-  if(s.type==="matrix") return !!v && s.rows.every(r => v[r[0]]);
-  if(s.type==="ladder") return !!(A.ladder && A.ladder.done);
-  if(s.type==="contact") return telOk(A.tel) && !(A.tel && !A.autoriza);
+  if(s.type==="rate") return !!v && s.part.every(f=>v[f[0]]);
+  if(s.type==="future") return !!v && FUT.every(f=>v[f[0]]);
+  if(s.type==="join") return mailOk(A.correo) && telOk(A.tel||"") && !!A.autoriza;
   return !!v;
 }
 
-/* Escalera: empieza en $35.000; puede subir dos escalones o bajar uno. Máximo tres precios. */
-function ensureLadder(){ if(!A.ladder) A.ladder = {idx:1, path:[], done:false, max:null, maxLabel:""}; }
-function ladderAnswer(yes){
-  const L = A.ladder, p = PRICES[L.idx];
-  L.path.push({price:p, yes});
-  const finish = (max, label) => { L.max = max; L.maxLabel = label; L.done = true; go(1); };
-  if(yes){
-    if(L.idx===1 || L.idx===2){ L.idx++; render(); return; }
-    if(L.idx===3) return finish(PRICES[3], money(PRICES[3])+" o más");
-    return finish(PRICES[0], money(PRICES[0]));
-  }
-  if(L.idx===1){ L.idx=0; render(); return; }
-  if(L.idx===2) return finish(PRICES[1], money(PRICES[1]));
-  if(L.idx===3) return finish(PRICES[2], money(PRICES[2]));
-  return finish(0, "No pagaría; usaría la versión gratuita");
+/* ===== Pantallas ===== */
+function intro(){ return `<section class="screen">
+  <span class="tag">De estilista a estilista</span>
+  <div class="phone" aria-label="Ejemplo: así te escribiría tu asistente">
+    <span class="clock">7:02</span><span class="day">martes</span>
+    <div class="noti"><span class="av">${SPARK}</span><div><small><span>Tu asistente</span><span>anoche, 10:48 p. m.</span></small>Laura reservó retoque de color para el jueves a las 3:00 p. m. Ya quedó en tu agenda.</div></div>
+    <div class="noti"><span class="av">${SPARK}</span><div><small><span>Tu asistente</span><span>ahora</span></small>Ana confirmó su cita de hoy a las 9:00. Un cliente de tu lista de espera tomó el espacio de las 4:00.</div></div>
+    <div class="noti"><span class="av">${SPARK}</span><div><small><span>Tu asistente</span><span>ahora</span></small>La semana pasada: 18 citas y <b>$1.200.000</b>. A 4 clientes ya les toca volver. ¿Les escribo?</div></div>
+  </div>
+  <h1>Tú pones el talento. Tu asistente llena la agenda.</h1>
+  <div class="founder">
+    <p>Estamos creando la herramienta de los estilistas independientes de Colombia: tu página con precios y botón Reservar, tu agenda, tu clientela, tus cuentas y un asistente que trabaja por ti mientras atiendes.</p>
+    <p>La estamos diseñando junto a estilistas, no desde una oficina. Antes de construir la siguiente pieza, queremos escucharte.</p>
+    <span class="sig">— El equipo fundador</span>
+  </div>
+  <h2>Lo que te llevas por responder</h2>
+  <ul class="gets">
+    <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span><div><b>Tu voz decide</b><span class="t">Cada pregunta trae una píldora con el beneficio de lo que viene. Lo que más eligen se construye primero.</span></div></li>
+    <li><span class="ic">${SPARK}</span><div><b>Llegas antes que nadie</b><span class="t">Puedes unirte a la lista de los primeros en usar la versión web.</span></div></li>
+  </ul>
+  <p class="note">Unos 5 minutos · desde tu celular · sin registrarte</p>
+</section>`; }
+
+function pill(s){ return s.p ? `<div class="pildora"><span class="cap" aria-hidden="true"></span><div><i>Píldora</i>${esc(s.p)}</div></div>` : ""; }
+function head(s){ const t = s.tf ? s.tf(A) : s.t; return `<h2>${esc(t)}</h2>${s.h?`<p class="hint">${esc(s.h)}</p>`:""}`; }
+
+function optsHTML(s){
+  const opts = optsOf(s), v = A[s.id], multi = s.type==="multi";
+  return `<div class="opts" role="${multi?"group":"radiogroup"}" aria-label="${esc(s.tf?s.tf(A):s.t)}">${opts.map((o,k)=>{
+    const sel = multi ? (v||[]).includes(o) : v===o;
+    const dis = multi && s.max && !sel && o!==s.excl && (v||[]).filter(x=>x!==s.excl).length>=s.max;
+    const sub = s.sub && s.sub[k] ? `<small>${esc(s.sub[k])}</small>` : "";
+    return `<button type="button" class="opt${multi?" multi":""}" role="${multi?"checkbox":"radio"}" aria-checked="${sel}"${dis?' aria-disabled="true"':""} data-o="${k}"><span class="box"></span><span>${esc(o)}${sub}</span></button>`; }).join("")}</div>`;
 }
 
-function el(tag, cls, text){ const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+function rateHTML(s){ const v = A[s.id]||{};
+  return `<div class="cards">${s.part.map(([id,n,ex])=>`<div class="card${v[id]?" rated":""}"><span class="fn">Función</span><b>${esc(n)}</b><span class="ex"><i>Lo que ganas</i>${esc(ex)}</span>
+    <div class="pills" role="radiogroup" aria-label="${esc(n)}">${RATE.map((c,k)=>`<button type="button" class="pill${k===0?" no":k===2?" pay":""}" role="radio" aria-checked="${v[id]===c}" data-r="${id}" data-c="${k}">${c}</button>`).join("")}</div></div>`).join("")}</div>`; }
+
+const ASK_HABLAR = {id:"q_hablar",type:"single",t:"¿Cómo te gustaría hablarle?",o:OH};
+function assistantHTML(s){ return `<h2>Tu asistente, el centro de todo</h2>
+  <p class="muted">Vive dentro de la plataforma. Agenda por ti, les responde a tus clientes y te dice qué hacer para ganar más.</p>
+  <div class="chat" aria-label="Ejemplo de conversación">
+    <span class="bub me"><small>Tú</small>¿Cómo me fue esta semana?</span>
+    <span class="bub ai"><small>Asistente</small>Tuviste 18 citas y ganaste $1.200.000. El martes en la tarde está libre: ¿les escribo a 4 clientes a los que ya les toca volver?</span>
+    <span class="bub me"><small>Tú</small>Sí, dale.</span>
+  </div>
+  ${pill(s)}
+  <h3>${ASK_HABLAR.t}</h3>
+  ${optsHTML(ASK_HABLAR)}`; }
+
+function cell(v){ return !v ? `<td class="off" aria-label="No incluido">—</td>` : (v==="✓" ? `<td class="yes" aria-label="Incluido">✓</td>` : `<td class="txt">${esc(v)}</td>`); }
+function plansHTML(s){ return `<span class="tag">Más que una agenda</span>
+  <h2>${NF} funciones en un solo lugar</h2>
+  <p class="muted">Otras apps te dan una agenda. Aquí tienes seis herramientas que trabajan juntas desde el plan más económico.</p>
+  <div class="tools">
+    <div class="tool"><b>Asistente</b><span>Agenda, responde y te aconseja</span></div>
+    <div class="tool"><b>Tu página</b><span>Precios, fotos y botón Reservar</span></div>
+    <div class="tool"><b>Agenda</b><span>Recordatorios y lista de espera</span></div>
+    <div class="tool"><b>Mi clientela</b><span>Ficha de cada cliente, va contigo</span></div>
+    <div class="tool"><b>Mis cuentas</b><span>Reportes y resumen para tu contador</span></div>
+    <div class="tool"><b>Confianza</b><span>Identidad verificada y opiniones</span></div>
+  </div>
+  <div class="rules"><span>3 días gratis</span><span>Pago mensual</span><span>Cancelas cuando quieras</span><span>Tus clientes no pagan</span></div>
+  <div class="prices">${PLANS.map((p,i)=>`<div class="pc${i===1?" mid":""}"><b>${p.n}</b><span class="pr">${money(p.p)}</span><small>al mes<br>${countPlan(i)} de ${NF} funciones</small></div>`).join("")}</div>
+  <div class="tbl"><table class="cmp">
+    ${CMP.map(([g,rows])=>`<tr class="sec"><th scope="col">${esc(g)}</th>${PLANS.map(p=>`<th scope="col">${p.n}</th>`).join("")}</tr>`+rows.map(([n,v])=>`<tr><td class="fname">${esc(n)}</td>${v.map(cell).join("")}</tr>`).join("")).join("")}
+  </table></div>
+  <p class="legend"><span class="yes">✓</span> incluido · <span class="off">—</span> no incluido</p>
+  ${pill({p:"Sin letra pequeña: 3 días gratis, pagas mes a mes y cancelas cuando quieras."})}
+  <h3>${esc(s.t)}</h3>${optsHTML(s)}`; }
+
+function futureHTML(s){ const v = A[s.id]||{};
+  return `${head(s)}<div class="cards">${FUT.map(([id,n,ex])=>`<div class="card${v[id]?" rated":""}"><b>${esc(n)}</b><span class="ex"><i>Lo que ganas</i>${esc(ex)}</span>
+    <div class="pills" role="radiogroup" aria-label="${esc(n)}">${FUTC.map((c,k)=>`<button type="button" class="pill" role="radio" aria-checked="${v[id]===c}" data-u="${id}" data-c="${k}">${c}</button>`).join("")}</div></div>`).join("")}</div>`; }
+
+function joinHTML(){ return `<div class="join">
+    <span class="tag">Lista de los primeros</span>
+    <h2>Sé de los primeros en usarla</h2>
+    <p>Estamos preparando la versión web inicial. Únete a la lista y asegura tu lugar antes del lanzamiento abierto.</p>
+    <ul class="perks">
+      <li><span class="ck">${CHECK}</span><span>Entras antes que todos y la pruebas 3 días gratis.</span></li>
+      <li><span class="ck">${CHECK}</span><span>Nos dices qué ajustar y lo tenemos en cuenta antes de abrir.</span></li>
+      <li><span class="ck">${CHECK}</span><span>Te avisamos a tu correo el día del lanzamiento.</span></li>
+    </ul>
+  </div>
+  <div class="field"><label for="correo">Tu correo</label><input id="correo" type="email" inputmode="email" autocomplete="email" maxlength="80" placeholder="tunombre@correo.com" value="${esc(A.correo||"")}"><p class="err" id="mailErr" hidden>Revisa el correo: debe tener la forma nombre@correo.com.</p></div>
+  <div class="field"><label for="nombre">Nombre que te gustaría para tu página <span>(opcional)</span></label><input id="nombre" type="text" maxlength="40" autocomplete="off" placeholder="Ej.: carolina-color" value="${esc(A.nombre_pagina||"")}"></div>
+  <div class="field"><label for="tel">WhatsApp <span>(opcional)</span></label><input id="tel" type="tel" inputmode="numeric" autocomplete="tel" maxlength="14" placeholder="300 123 4567" value="${esc(A.tel||"")}"><p class="err" id="telErr" hidden>Escribe un celular de 10 dígitos que empiece por 3.</p></div>
+  <div class="field"><label for="loc">Ciudad o barrio donde trabajas <span>(opcional)</span></label><input id="loc" type="text" maxlength="60" autocomplete="address-level2" placeholder="Ej.: Chapinero, Bogotá" value="${esc(A.loc||"")}"></div>
+  <label class="check" for="autoriza"><input id="autoriza" type="checkbox"${A.autoriza?" checked":""}><span>Autorizo el tratamiento de mis datos para recibir el aviso de lanzamiento, conforme a la Ley 1581 de 2012.</span></label>
+  <button type="button" class="skip" id="skip">Ahora no, solo enviar mis respuestas</button>`; }
 
 function render(){
-  const list = visible(); const s = list[cur];
-  $("#progress").innerHTML = SECS.map((_,k)=>`<i class="${k<=s.sec?"on":""}"></i>`).join("");
-  $("#sec").textContent = SECS[s.sec];
-  $("#step").textContent = `${cur+1} de ${list.length}`;
-  $("#back").style.visibility = cur===0 ? "hidden" : "visible";
-  $("#err").hidden = true;
-  const next = $("#next");
-  next.hidden = s.type==="ladder";
-  next.textContent = (cur===list.length-1 || s.type==="contact") ? "Enviar" : "Siguiente";
-  const box = $("#q"); box.innerHTML = "";
-
-  if(s.type==="ladder"){
-    ensureLadder();
-    const L = A.ladder, n = L.path.length;
-    const card = el("div","ladder");
-    card.appendChild(el("p","count", `Precio ${n+1} de 3 como máximo`));
-    if(n===0){
-      box.appendChild(el("h2", null, "Te mostraremos hasta tres precios para la versión Pro, uno a la vez."));
-      box.appendChild(el("p","hint","La versión gratuita seguiría disponible. Responde pensando en lo que de verdad pagarías."));
-      card.appendChild(el("p", null, "¿Pagarías este valor al mes por la versión Pro?"));
-    } else {
-      const last = L.path[n-1];
-      box.appendChild(el("h2", null, `Entendido. ¿Y si costara ${money(PRICES[L.idx])} al mes?`));
-      card.appendChild(el("p","prev", `Tu respuesta a ${money(last.price)}: ${last.yes ? "Sí" : "No"}`));
-      card.appendChild(el("p", null, "¿Pagarías este valor al mes por la versión Pro?"));
-    }
-    const pr = el("p","price"); pr.textContent = money(PRICES[L.idx]); pr.appendChild(el("small",null," /mes")); card.appendChild(pr);
-    const yn = el("div","yn");
-    const y = el("button","btn btn-primary","Sí"); y.type="button"; y.onclick=()=>ladderAnswer(true);
-    const no = el("button","btn btn-line","No"); no.type="button"; no.onclick=()=>ladderAnswer(false);
-    yn.append(y,no); card.appendChild(yn); box.appendChild(card);
-    return;
-  }
-
-  const h = el("h2","qtext"); if(s.html) h.innerHTML = s.t; else h.textContent = s.t; box.appendChild(h);
-  if(s.h) box.appendChild(el("p","hint",s.h));
-
-  if(s.type==="single" || s.type==="multi"){
-    const opts = optsOf(s);
-    if(s.type==="single" && A[s.id] && !opts.includes(A[s.id])) delete A[s.id];
-    if(s.type==="multi" && A[s.id]) A[s.id] = A[s.id].filter(x=>opts.includes(x));
-    const wrap = el("div","opts"); wrap.setAttribute("role", s.type==="multi" ? "group" : "radiogroup");
-    opts.forEach(label=>{
-      const b = el("button","opt"+(s.type==="multi"?" multi":"")); b.type="button";
-      b.setAttribute("role", s.type==="multi" ? "checkbox" : "radio");
-      const val = A[s.id];
-      const sel = s.type==="multi" ? (val||[]).includes(label) : val===label;
-      b.setAttribute("aria-checked", sel);
-      if(s.type==="multi" && s.max && !sel && label!==s.excl && (val||[]).filter(x=>x!==s.excl).length>=s.max) b.setAttribute("aria-disabled","true");
-      b.appendChild(el("span","box")); b.appendChild(el("span",null,label));
-      b.onclick = ()=>{
-        if(s.type==="multi"){
-          let v = A[s.id] || [];
-          if(v.includes(label)) v = v.filter(x=>x!==label);
-          else if(label===s.excl) v = [label];
-          else { v = v.filter(x=>x!==s.excl); if(!s.max || v.length<s.max) v = [...v,label]; }
-          A[s.id] = v; render();
-        } else {
-          A[s.id] = label; render();
-          setTimeout(()=>{ if(A[s.id]===label) go(1); }, 260);
-        }
-      };
-      wrap.appendChild(b);
-    });
-    box.appendChild(wrap);
-  }
-
-  if(s.type==="matrix"){
-    A[s.id] = A[s.id] || {};
-    const wrap = el("div","matrix");
-    s.rows.forEach(r=>{
-      const row = el("div","mrow");
-      const lbl = el("div","lbl");
-      lbl.appendChild(el("strong",null,r[1])); if(r[2]) lbl.appendChild(el("span",null,r[2]));
-      row.appendChild(lbl);
-      const pills = el("div","pills"); pills.setAttribute("role","radiogroup"); pills.setAttribute("aria-label", r[1]);
-      s.cols.forEach(c=>{
-        const b = el("button","pill",c); b.type="button"; b.setAttribute("role","radio");
-        b.setAttribute("aria-checked", A[s.id][r[0]]===c);
-        b.onclick = ()=>{ A[s.id][r[0]] = c; render(); };
-        pills.appendChild(b);
-      });
-      row.appendChild(pills); wrap.appendChild(row);
-    });
-    box.appendChild(wrap);
-  }
-
-  if(s.type==="contact"){
-    h.textContent = "Déjanos tus datos para avisarte cuando abramos cupos en tu zona";
-    const f = el("div","field");
-    f.innerHTML = `<label for="tel">WhatsApp <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
-      <input id="tel" type="tel" inputmode="numeric" autocomplete="tel" maxlength="14" placeholder="300 123 4567">
-      <p class="err" id="telErr" hidden>Escribe un celular colombiano de 10 dígitos que empiece por 3.</p>
-      <label for="loc">Localidad o municipio donde trabajas <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
-      <input id="loc" type="text" maxlength="60" autocomplete="address-level2" placeholder="Ej.: Suba, Chapinero, Soacha">
-      <label class="check" for="autoriza"><input id="autoriza" type="checkbox"><span>Autorizo el tratamiento de mis datos para este fin, conforme a la Ley 1581 de 2012.</span></label>`;
-    box.appendChild(f);
-    const tel=f.querySelector("#tel"), loc=f.querySelector("#loc"), au=f.querySelector("#autoriza");
-    tel.value=A.tel||""; loc.value=A.loc||""; au.checked=!!A.autoriza;
-    const telErr=f.querySelector("#telErr");
-    const upd=()=>{ A.tel=tel.value.replace(/[^\d ]/g,"").trim(); if(tel.value!==A.tel) tel.value=A.tel; A.loc=loc.value.slice(0,60).trim(); A.autoriza=au.checked; telErr.hidden=telOk(A.tel); $("#next").disabled=!answered(s); };
-    tel.oninput=upd; loc.oninput=upd; au.onchange=upd;
-  }
-  next.disabled = !answered(s);
+  const nav = $("#next"), back = $("#back");
+  if(cur<0){ $("#view").innerHTML = intro(); $("#top").hidden = true; back.hidden = true; nav.disabled = false; nav.textContent = "Quiero ser parte"; return; }
+  const list = visible(), s = list[cur];
+  $("#top").hidden = false; back.hidden = false;
+  $("#topSec").textContent = SECS[s.sec];
+  $("#topN").textContent = cur+1; $("#topT").textContent = list.length;
+  $("#topBar").style.width = ((cur+1)/list.length*100)+"%";
+  let h = "";
+  if(s.type==="single" || s.type==="multi") h = pill(s) + head(s) + optsHTML(s);
+  else if(s.type==="rate") h = `<span class="tag">${s.part===F1?"Funciones 1 de 2":"Funciones 2 de 2"}</span>` + head(s) + pill(s) + rateHTML(s);
+  else if(s.type==="assistant") h = assistantHTML(s);
+  else if(s.type==="plans") h = plansHTML(s);
+  else if(s.type==="future") h = pill(s) + futureHTML(s);
+  else if(s.type==="join") h = joinHTML();
+  $("#view").innerHTML = `<section class="screen">${h}<p class="err" id="err" hidden></p></section>`;
+  const last = cur===list.length-1;
+  nav.textContent = s.type==="join" ? "Unirme a la lista" : (last && answered(s) ? "Enviar" : "Continuar");
+  nav.disabled = !answered(s);
+  if(s.type==="join") bindJoin(s);
 }
 
+function bindJoin(s){
+  const m=$("#correo"), nm=$("#nombre"), tel=$("#tel"), loc=$("#loc"), au=$("#autoriza");
+  const upd=()=>{ A.correo = m.value.trim().slice(0,80); A.nombre_pagina = nm.value.trim().slice(0,40);
+    A.tel = tel.value.replace(/[^\d ]/g,"").trim(); if(tel.value!==A.tel) tel.value=A.tel;
+    A.loc = loc.value.slice(0,60).trim(); A.autoriza = au.checked;
+    $("#telErr").hidden = telOk(A.tel); $("#mailErr").hidden = !A.correo || mailOk(A.correo) || document.activeElement===m;
+    $("#next").disabled = !answered(s); };
+  [m,nm,tel,loc].forEach(i=>i.oninput=upd); au.onchange=upd; m.onblur=upd;
+  $("#skip").onclick = ()=>{ A.unido = false; submit("normal"); };
+}
+
+function keepScroll(){ const y = window.scrollY; render(); window.scrollTo({top:y}); }
+
+document.addEventListener("click", e=>{
+  if(cur<0) return;
+  const s = visible()[cur];
+  if(!s) return;
+  const o = e.target.closest(".opt");
+  if(o){ if(o.getAttribute("aria-disabled")==="true") return;
+    const step = s.type==="assistant" ? ASK_HABLAR : s;
+    const label = optsOf(step)[+o.dataset.o];
+    if(step.type==="multi"){
+      let v = A[step.id]||[];
+      if(v.includes(label)) v = v.filter(x=>x!==label);
+      else if(label===step.excl) v = [label];
+      else { v = v.filter(x=>x!==step.excl); if(!step.max || v.length<step.max) v = [...v,label]; }
+      A[step.id] = v;
+    } else A[step.id] = label;
+    keepScroll(); return; }
+  const r = e.target.closest("[data-r]");
+  if(r){ A[s.id] = A[s.id]||{}; A[s.id][r.dataset.r] = RATE[+r.dataset.c]; keepScroll(); return; }
+  const u = e.target.closest("[data-u]");
+  if(u){ A[s.id] = A[s.id]||{}; A[s.id][u.dataset.u] = FUTC[+u.dataset.c]; keepScroll(); return; }
+});
+
 function go(d){
-  const list = visible(); const s = list[cur];
+  if(cur<0){ T0 = Date.now(); cur = 0; render(); window.scrollTo({top:0}); return; }
+  const list = visible(), s = list[cur];
   if(d>0){
-    if(!answered(s)) return;
-    const end = s.endIf && s.endIf(A);
-    if(end){ submit(end); return; }
-    const nl = visible();
-    const idx = nl.indexOf(s);
+    if(!answered(s)){ const e=$("#err"); e.textContent = s.type==="rate"||s.type==="future" ? "Te falta calificar alguna. Revisa las que no tienen opción marcada." : s.type==="join" ? "Escribe tu correo y marca la autorización para unirte." : "Elige una opción para seguir."; e.hidden=false; return; }
+    if(s.type==="join"){ A.unido = true; submit("normal"); return; }
+    const end = s.endIf && s.endIf(A); if(end){ submit(end); return; }
+    const nl = visible(), idx = nl.indexOf(s);
     if(idx===nl.length-1){ submit("normal"); return; }
     cur = idx+1;
-  } else {
-    if(s.type==="ladder" && A.ladder && A.ladder.path.length>0){ delete A.ladder; render(); return; }
-    cur = Math.max(0, cur-1);
-    if(visible()[cur].type==="ladder") delete A.ladder;
-  }
+  } else cur = cur-1;
   render(); window.scrollTo({top:0});
 }
 
-function calcText(){
-  const k = O6.indexOf(A.q6);
-  if(k===0) return "Casi no te fallan citas: esa constancia de tus clientes es plata que <b>sí estás ganando</b>. Cuídala.";
-  if(k===4) return "Atiendes por orden de llegada: no pierdes citas, pero cada hora sin clientes en la silla también es plata que <b>no entra</b>.";
-  if(k<1 || k>3) return "";
-  const t = [15000,27000,45000,60000][O4.indexOf(A.q4)] || 27000;
-  const r = [[1,3],[4,7],[8,null]][k-1];
-  const lo = money(r[0]*t), hi = r[1] ? money(r[1]*t) : null;
-  return `Con un servicio de cerca de <b>${money(t)}</b>, hoy podrías estar dejando de ganar ${hi ? `entre <b>${lo}</b> y <b>${hi}</b>` : `<b>${lo}</b> o más`} al mes por citas falladas.`;
+$("#next").addEventListener("click", ()=>go(1));
+$("#back").addEventListener("click", ()=>go(-1));
+
+/* ===== Envío ===== */
+function payload(kind){
+  const f = A.q_f||{}, u = A.q_futuro||{}, row = {
+    v:VERSION, sid:SID, fecha:new Date().toISOString(), t_seg:T0?Math.round((Date.now()-T0)/1000):0, hp:$("#website").value||"",
+    origen:(new URLSearchParams(location.search).get("src")||"").slice(0,40), resultado:kind,
+    trabajo:A.q_trabajo||"", especialidad:A.q_especialidad||"", clientes_recurrentes:A.q_clientes||"", precio_servicio:A.q_precio_servicio||"",
+    clientes_nuevos:(A.q_nuevos||[]).join(" | "), agenda_hoy:A.q_agenda||"", citas_falladas:A.q_fallan||"", control_ingresos:A.q_cuentas||"", frenos:(A.q_frenos||[]).join(" | ")
+  };
+  FALL.forEach(([id])=>row[id]=f[id]||"");
+  Object.assign(row, {mas_importante:A.q_top||"", asistente_hablar:A.q_hablar||"", asistente_limite:A.q_limite||"", intencion:A.q_intencion||"", barrera:A.q_barrera||"",
+    plan:A.q_plan||"", precio_plan:A.q_precio_plan||"", precio_max:A.q_precio_max||""});
+  FUT.forEach(([id])=>row[id]=u[id]||"");
+  const ok = !!A.unido && !!A.autoriza;
+  Object.assign(row, {lista_primeros:ok?"Sí":"No", correo:ok?A.correo||"":"", nombre_pagina:ok?A.nombre_pagina||"":"", whatsapp:ok?(A.tel||"").replace(/\D/g,""):"", localidad:ok?A.loc||"":"", autoriza:ok?"Sí":"No"});
+  return row;
 }
 
 async function submit(kind){
-  const btn = $("#next"); btn.disabled = true; btn.textContent = "Enviando…";
-  const m10 = A.q10||{}, m15 = A.q15||{}, L = A.ladder;
-  const row = {
-    v:FORM_VERSION, sid:SID, t_ms:T0 ? Date.now()-T0 : 0, hp:($("#website").value||""),
-    fecha:new Date().toISOString(), origen:(new URLSearchParams(location.search).get("src")||"").slice(0,40), resultado:kind,
-    q1_trabajo:A.q1, q2_especialidad:A.q2||"", q3_cartera:A.q3||"", q4_precio_servicio:A.q4||"",
-    q5_clientes_nuevos:(A.q5||[]).join(" | "), q6_inasistencias:A.q6||"", q7_control_ingresos:A.q7||"", q8_credito:A.q8||"",
-    q9_frenos:(A.q9||[]).join(" | "),
-    q10_perfil:m10.perfil||"", q10_agenda:m10.agenda||"", q10_recordatorios:m10.recordatorios||"",
-    q10_historial:m10.historial||"", q10_cartera:m10.cartera||"", q10_metas:m10.metas||"", q10_reportes:m10.reportes||"",
-    q11_mas_importante:A.q11||"", q12_intencion:A.q12||"", q13_barrera:A.q13||"",
-    q14_precio_max:L && L.done ? L.max : "", q14_resultado:L && L.done ? L.maxLabel : "",
-    q14_recorrido:L ? L.path.map(x=>money(x.price)+(x.yes?" Sí":" No")).join(" > ") : "",
-    q15_silla:m15.silla||"", q15_vacantes:m15.vacantes||"", q15_insumos:m15.insumos||"",
-    q15_cursos:m15.cursos||"", q15_destacado:m15.destacado||"", q15_credito:m15.credito||"",
-    q16_fundador:A.q16||"", whatsapp:A.autoriza ? (A.tel||"").replace(/\D/g,"") : "", localidad:A.loc||"", autoriza:A.autoriza ? "Sí" : "No"
-  };
-  if(row.hp){ finish(kind, false); return; }
+  const btn = $("#next"), row = payload(kind);
+  if(row.hp){ finish(kind); return; }
   if(ENDPOINT){
-    try{
-      await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(row)});
-    }catch(e){
-      $("#err").textContent = "No pudimos enviar tu respuesta. Revisa tu conexión e inténtalo de nuevo.";
-      $("#err").hidden = false; btn.disabled = false; btn.textContent = "Enviar";
-      return;
-    }
+    btn.disabled = true; btn.textContent = "Enviando…";
+    try{ await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(row)}); store.set(); }
+    catch(e){ const er=$("#err"); er.textContent="No pudimos enviar tus respuestas. Revisa tu conexión e inténtalo de nuevo."; er.hidden=false; btn.disabled=false; btn.textContent="Enviar"; return; }
   }
-  if(ENDPOINT) store.set();
-  finish(kind, !ENDPOINT);
+  finish(kind);
 }
 
-function finish(kind, demo){
-  $("#survey").hidden = true; $("#done").hidden = false;
-  const title=$("#doneTitle"), msg=$("#doneMsg"), calc=$("#calc");
-  if(kind==="screen"){
-    title.textContent = "Gracias por tu interés";
-    msg.textContent = "Esta encuesta es para estilistas en ejercicio.";
-  } else if(kind==="low"){
-    title.textContent = "Gracias por tu tiempo";
-    msg.textContent = "Tu opinión nos ayuda a construir una herramienta que de verdad sirva a los estilistas.";
-  } else {
-    title.textContent = "¡Listo! Tu respuesta quedó registrada";
-    msg.textContent = (A.q16===O16[0] || A.q16===O16[1]) && A.tel
-      ? "Te escribiremos cuando abramos cupos en tu zona."
-      : "Gracias por ayudarnos a construir la app.";
-  }
-  const c = kind==="screen" ? "" : calcText();
-  calc.hidden = !c; if(c) calc.innerHTML = c;
-  $("#demoNote").hidden = !demo;
-  $("#again").hidden = true;
+function calc(){
+  const k = O6.indexOf(A.q_fallan);
+  if(k===0) return `<span class="k">Tu cifra</span><p>Casi no te fallan citas. Esa constancia de tus clientes es plata que <b>sí estás ganando</b>.</p>`;
+  if(k===4) return `<span class="k">Tu cifra</span><p>Atiendes por orden de llegada: no pierdes citas, pero cada hora con la silla vacía también es plata que no entra.</p>`;
+  if(k<1) return "";
+  const t = [15000,27000,45000,60000][O4.indexOf(A.q_precio_servicio)] || 27000;
+  const r = [[1,3],[4,7],[8,null]][k-1];
+  const fig = r[1] ? `Entre ${money(r[0]*t)} y ${money(r[1]*t)}` : `${money(r[0]*t)} o más`;
+  return `<span class="k">Tu cifra</span><p>Las citas que no llegan te podrían estar costando al mes:</p><span class="big">${fig}</span>
+    <small>Calculado con tus respuestas: ${r[1]?`de ${r[0]} a ${r[1]}`:`${r[0]} o más`} citas falladas al mes × un servicio de cerca de ${money(t)}.</small>`;
+}
+
+function shareHTML(){
+  const msg = `Estoy ayudando a crear una herramienta para estilistas. Responde en 5 minutos y ayuda a decidir qué funciones tendrá: ${SHARE_URL}?src=colega`;
+  return `<div class="share"><h3>¿Conoces a un colega que debería ver esto?</h3>
+    <p class="muted">Compártele la encuesta. Entre más estilistas respondan, mejor queda la herramienta para todos.</p>
+    <div class="share-btns">
+      <a class="btn btn-wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${WA}Compartir por WhatsApp</a>
+      <button class="btn btn-line" id="copy" type="button">Copiar enlace</button>
+    </div>
+    <p class="muted" id="copyMsg" role="status" style="font-size:.88rem"></p></div>`;
+}
+
+function finish(kind){
+  $("#top").hidden = true; $("#nav").hidden = true;
+  let title, msg;
+  if(kind==="screen"){ title = "Gracias por tu interés"; msg = "Esta encuesta es para estilistas en ejercicio. Si conoces a alguien que lo sea, compártela."; }
+  else if(kind==="low"){ title = "Gracias por tu tiempo"; msg = "Tu opinión nos ayuda a construir algo que de verdad sirva."; }
+  else if(A.unido){ title = "¡Ya estás en la lista!"; msg = `Te escribiremos a ${A.correo} cuando lancemos la versión web inicial.`; }
+  else { title = "¡Gracias por responder!"; msg = "Tus respuestas ya cuentan para decidir qué se construye primero."; }
+  $("#view").innerHTML = `<section class="screen"><div class="done-h"><div class="mark">${CHECK}</div><h2>${esc(title)}</h2><p class="lead muted">${esc(msg)}</p></div>
+    ${shareHTML()}</section>`;
+  $("#copy").onclick = async ()=>{ const m=$("#copyMsg"); try{ await navigator.clipboard.writeText(SHARE_URL+"?src=colega"); m.textContent="Enlace copiado. Pégalo en tu chat."; }catch(e){ m.textContent = "Copia este enlace: "+SHARE_URL; } };
   window.scrollTo({top:0});
 }
-function showAlready(){
-  $("#intro").hidden = true; $("#survey").hidden = true; $("#done").hidden = false;
-  $("#doneTitle").textContent = "Ya registramos una respuesta desde este dispositivo";
-  $("#doneMsg").textContent = "Gracias por participar. Si eres otro estilista y usas este mismo celular, puedes responder de nuevo.";
-  $("#calc").hidden = true; $("#demoNote").hidden = true; $("#again").hidden = false;
+
+function already(){
+  $("#nav").hidden = true;
+  $("#view").innerHTML = `<section class="screen"><div class="done-h"><div class="mark">${CHECK}</div><h2>Ya registramos una respuesta desde este celular</h2>
+    <p class="lead muted">Gracias por participar. Si eres otro estilista y usas este mismo celular, puedes responder de nuevo.</p></div>
+    <button class="btn btn-line" id="again" type="button">Soy otro estilista y quiero responder</button>${shareHTML()}</section>`;
+  $("#again").onclick = ()=>{ store.clear(); location.reload(); };
+  $("#copy").onclick = async ()=>{ const m=$("#copyMsg"); try{ await navigator.clipboard.writeText(SHARE_URL+"?src=colega"); m.textContent="Enlace copiado. Pégalo en tu chat."; }catch(e){ m.textContent = "Copia este enlace: "+SHARE_URL; } };
 }
 
-$("#again").onclick = ()=>{ store.clear(); location.reload(); };
-if(store.get()) showAlready();
-$("#start").onclick = ()=>{ T0 = Date.now(); $("#intro").hidden = true; $("#survey").hidden = false; render(); window.scrollTo({top:0}); };
-$("#back").onclick = ()=>go(-1);
-$("#next").onclick = ()=>go(1);
+if(store.get()) already(); else render();
 </script>
 
 </body>
